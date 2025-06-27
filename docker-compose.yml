@@ -8,6 +8,13 @@ services:
       dockerfile: ./docker/php/Dockerfile
     volumes:
       - './src:/var/www/html'
+    environment:
+      - DB_CONNECTION=${DB_CONNECTION}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
     networks:
       - app-network
     command: sh -c "composer install; chown -R www-data:www-data /var/www/html/storage; sleep 10; php artisan migrate; php-fpm"
@@ -27,14 +34,16 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=laravel
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     volumes:
       - './docker/mysql:/var/lib/mysql'
     restart: unless-stopped
     networks:
       - app-network
-      
+
 networks:
   app-network:
     driver: bridge
