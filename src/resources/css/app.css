@@ -9,3 +9,22 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Стили для бейджей статусов */
+.badge {
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+
+/* Стили для таблицы */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    min-width: 800px;
+}
+
+.table th {
+    white-space: nowrap;
+}

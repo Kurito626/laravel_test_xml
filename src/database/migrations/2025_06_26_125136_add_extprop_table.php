@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('extprops', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('season');
+            $table->string('name')->nullable();
+            $table->string('season')->nullable();
         });
     }
 
